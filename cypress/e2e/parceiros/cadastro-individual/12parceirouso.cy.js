@@ -11,6 +11,7 @@ describe('Parceiros',  () => {
         tipoPessoa: 'JURÍDICA',
         cnpj: '23.165.305/0001-59',
         nomeEsperado: 'HELOISA PELICULAS',
+        razaoSocialEsperado: 'CAMILA SILVA PEREIRA DA CORTE 38733872805',
         cepEsperado: '03728210',
         cidade: 'SAO PAULO',
         bairroEsperado: 'JARDIM CASTELO',
