@@ -1,86 +1,54 @@
 import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
-import Parceiros from "../../../pages/parceiros" 
+import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
+// Importe a sua nova página de impostos
+import Impostos from "../../../pages/parceiros/cadastro-imposto" 
 
 describe('Impostos',() => {
 
-    before(() =>{
+    beforeEach(() =>{
         Login.visitarPagina()
-
         Login.preencherCredenciais()    
-
         Dashboard.vericarAcessoDashboard()
-
-    })
-
-    it('Cadastrar Impostos', () => {
         Parceiros.acessarPagina()
-        cy.contains('a','50.071.289 DAVID DE SOUZA SILVA').click()
-        cy.wait(1000)
-        cy.contains('button', 'Novo Imposto').click()
-
-        //tipo de imposto
-        cy.get('input[placeholder="Buscar tipo de imposto"]').type('presumido')
-        cy.contains('li', 'Presumido ICMS DEB').click()
-
-        //Na nota
-        cy.get('#nota').select('Nenhum')
-        
-
-        //No financeiro origem
-        cy.get('#origemFinanceiro').select('Nenhum')
-            
-
-        //No financeiro origem estoque
-        cy.get('#origemEstoque').select('Nenhum')
-
-        //Calcular
-        cy.get('#calcular').click()
-
-        //Salvar
-        cy.contains('button', 'Salvar').click()
-
-
-        //Adicionar outro imposto
-        cy.wait(1000)
-        cy.contains('button', 'Novo Imposto').click()
-
-        //Na nota
-        cy.get('#nota').select('Nenhum')
-        
-        //No financeiro origem
-        cy.get('#origemFinanceiro').select('Subtrair')
-            
-        //No financeiro origem estoque
-        cy.get('#origemEstoque').select('Subtrair')
-
-        //Calcular
-        cy.get('#calcular').click()
-
-        //Salvar
-        cy.contains('button', 'Salvar').click()
-
-        //Adicionar outro imposto
-        cy.wait(1000)
-        cy.contains('button', 'Novo Imposto').click()
-
-        //Na nota
-        cy.get('#nota').select('Subtrair')
-        
-        //No financeiro origem
-        cy.get('#origemFinanceiro').select('Subtrair')
-            
-        //No financeiro origem estoque
-        cy.get('#origemEstoque').select('Subtrair')
-
-        //Calcular
-        cy.get('#calcular').click()
-
-        //Salvar
-        cy.contains('button', 'Salvar').click()
-
-
-        
+        Impostos.acessarParceiro() 
     })
 
+    it('Cadastrar Impostos Presumido ICMS DEB', () => {
+        
+        const dadosImposto = {
+            buscaTipo: 'presumido',
+            nomeExatoLista: 'Presumido ICMS DEB',
+            nota: 'Nenhum',
+            financeiro: 'Nenhum',
+            estoque: 'Nenhum'
+        }
+        
+        Impostos.cadastrarNovoImposto(dadosImposto)
+    })
+
+    it('Cadastrar Impostos Teste 01/12 - 2', () => {
+        const dadosImposto = {
+            buscaTipo: 'teste 01/12',
+            nomeExatoLista: 'Teste 01/12 - 2',
+            nota: 'Nenhum',
+            financeiro: 'Subtrair',
+            estoque: 'Subtrair'
+        }
+        
+        Impostos.cadastrarNovoImposto(dadosImposto)
+    })
+    
+
+    /*
+    it('Cadastrar Outro Imposto (Exemplo do código comentado)', () => {
+        Impostos.cadastrarNovoImposto({
+            buscaTipo: 'algum outro imposto',
+            nomeExatoLista: 'Nome Exato - X',
+            nota: 'Subtrair',
+            financeiro: 'Subtrair',
+            estoque: 'Subtrair'
+        })
+    })
+    */
 })

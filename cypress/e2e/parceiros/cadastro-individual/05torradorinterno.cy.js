@@ -1,6 +1,6 @@
 import Login from "../pages/login"
-import Dashboard from "../pages/dashboard"
-import Parceiros from "../pages/parceiros" 
+import Dashboard from "../../../pages/dashboard"
+import Parceiros from "../../../pages/parceiros/cadastro-parceiros"
 
 
 describe('Parceiros',  () => {

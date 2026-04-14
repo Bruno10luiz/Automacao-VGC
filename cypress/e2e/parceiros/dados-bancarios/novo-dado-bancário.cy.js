@@ -1,55 +1,70 @@
 import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
-import Parceiros from "../../../pages/parceiros" // Importa a página nova
+import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
+import DadosBancarios from "../../../pages/parceiros/cadastro-bancario"
 
+const PARCEIRO_TESTE = '50.071.289 DAVID DE SOUZA SILVA'
 
 describe('Procurar Conta Contábil', () => {
+    
     beforeEach(() => {
         Login.visitarPagina()
-
         Login.preencherCredenciais()
-
         Dashboard.vericarAcessoDashboard()
     })
 
-    it('Acessar Dados Bancários e criar novo dado bancário com todas informações', () => {
+    it('Acessar Dados Bancários e criar novo dado bancário com todas informações: Corrente', () => {
         Parceiros.acessarPagina()
-    
-        cy.contains('a', '50.071.289 DAVID DE SOUZA SILVA').click()
-        cy.contains('button', 'Novo Dado Bancário').click()
+        DadosBancarios.acessarParceiro(PARCEIRO_TESTE)
+        DadosBancarios.clicarNovoDadoBancario()
 
-        //conta principal
-        cy.get('#contaPrincipal').click()
-        cy.get('#permitirAdiantamento').click()
+        DadosBancarios.marcarOpcoesIniciais()
+        DadosBancarios.preencherBanco('Banco do Brasil', 'BANCO DO BRASIL S/A (1)')
+        
 
-        //banco
-        cy.get('.autocomplete > .form-control').type('Banco do Brasil')
-        cy.contains('li', 'BANCO DO BRASIL S/A (1)').click()
-        cy.contains('button', 'Salvar').click()
-        cy.get('#agencia').type('1234')
-        cy.get('#numeroConta').type('56789-0')
-        cy.get('#tipoConta').select('Corrente')
-        cy.get('#chavePix').type('12345678900')
-        cy.get('#identificacao').type('Dado Bancário Teste')
-        cy.contains('button', 'Salvar').click()
-
-
+        DadosBancarios.preencherDetalhesConta({
+            agencia: '1234',
+            numeroConta: '56789-0',
+            tipoConta: 'Corrente',
+            chavePix: '12345678900',
+            identificacao: 'Dado Bancário Teste'
         })
+        DadosBancarios.salvar()
+    })
+
+    it('Acessar Dados Bancários e criar novo dado bancário com todas informações: Poupança', () => {
+        Parceiros.acessarPagina()
+        DadosBancarios.acessarParceiro(PARCEIRO_TESTE)
+        DadosBancarios.clicarNovoDadoBancario()
+
+        DadosBancarios.marcarOpcoesIniciais()
+        DadosBancarios.preencherBanco('Banco do Brasil', 'BANCO DO BRASIL S/A (1)')
+
+        DadosBancarios.preencherDetalhesConta({
+            agencia: '1234',
+            numeroConta: '56789-0',
+            tipoConta: 'Poupança', 
+            chavePix: '12345678900',
+            identificacao: 'Dado Bancário Teste'
+        })
+        DadosBancarios.salvar()
+    })
+
     it('Acessar Dados Bancários e criar novo dado bancário com apenas informações obrigatórias', () => {
         Parceiros.acessarPagina()
-    
-        cy.contains('a', '50.071.289 DAVID DE SOUZA SILVA').click()
-        cy.contains('button', 'Novo Dado Bancário').click()
+        DadosBancarios.acessarParceiro(PARCEIRO_TESTE)
+        DadosBancarios.clicarNovoDadoBancario()
 
-        //conta principal
-        //cy.get('#contaPrincipal').click()
-        //cy.get('#permitirAdiantamento').click()
+        DadosBancarios.preencherBanco('Banco do Brasil', 'BANCO DO BRASIL S/A (1)')
+        DadosBancarios.salvar()
+    })
 
-        //banco
-        cy.get('.autocomplete > .form-control').type('Banco do Brasil')
-        cy.contains('li', 'BANCO DO BRASIL S/A (1)').click()
+    /*it('Acessar Dados Bancários e tentar criar novo dado bancário sem preencher campos obrigatórios', () => {
+        Parceiros.acessarPagina()
+        DadosBancarios.acessarParceiro(PARCEIRO_TESTE)
+        DadosBancarios.clicarNovoDadoBancario()
 
-        cy.contains('button', 'Salvar').click()
-
-        })
+        DadosBancarios.salvar()
+        DadosBancarios.validarMensagemDeErro('Banco é obrigatório')
+    })*/
 })

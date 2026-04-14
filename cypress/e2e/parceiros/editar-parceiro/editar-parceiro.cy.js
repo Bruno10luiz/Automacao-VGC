@@ -1,27 +1,36 @@
 import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
-import Parceiros from "../../../pages/parceiros" // Importa a página nova
+import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
+import EditarParceiro from "../../../pages/parceiros/editar-parceiros"
 
+const PARCEIRO_ORIGINAL = '50.071.289 DAVID DE SOUZA SILVA'
+const PARCEIRO_ATUALIZADO = '50.071.289 DAVID DE SOUZA SILVA ATUALIZADO'
 
-describe('Procurar Conta Contábil', () => {
+describe('Edição de Parceiro', () => {
+    
     before (() => {
         Login.visitarPagina()
-
         Login.preencherCredenciais()
-
         Dashboard.vericarAcessoDashboard()
     })
 
-    it('Atualizando Nome do parceiro, matriz não pode att sozinho', () => {
+    it('Atualizando Nome do parceiro, matriz não pode atualizar sozinha', () => {
         Parceiros.acessarPagina()
-        cy.contains('a','50.071.289 DAVID DE SOUZA SILVA').click()
-        cy.wait(1000)
-        cy.get('.card-info-parceiro__btn-editar-texto').click()
-        cy.get('#nome').clear().type('50.071.289 DAVID DE SOUZA SILVA ATUALIZADO')
-        cy.contains('button', 'Atualizar').click()
-        cy.wait(1000)
-        cy.get('.card-info-parceiro__btn-editar-texto').click()
-        cy.get('input[placeholder="Buscar parceiro matriz"]')
-            .should('have.value', '')
+        
+        // 1. Acessa o parceiro alvo
+        EditarParceiro.acessarParceiro(PARCEIRO_ORIGINAL)
+        
+        // 2. Abre a edição e muda o nome
+        EditarParceiro.abrirEdicao()
+        EditarParceiro.atualizarNome(PARCEIRO_ATUALIZADO)
+        EditarParceiro.salvarAtualizacao()
+        
+        // 3. Reabre o formulário para validar a regra de negócio da Matriz
+        EditarParceiro.abrirEdicao()
+        EditarParceiro.validarMatrizNaoAtualizada()
+
+        // 4. TEARDOWN: Desfazendo a edição
+        EditarParceiro.atualizarNome(PARCEIRO_ORIGINAL)
+        EditarParceiro.salvarAtualizacao()
     })
 })

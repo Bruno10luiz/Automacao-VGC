@@ -1,6 +1,6 @@
 import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
-import Parceiros from "../../../pages/parceiros" 
+import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
 
 const dados = {
     cenario: 'Cadastro: Produtor Rural - David', // Nome que vai aparecer no Cypress
