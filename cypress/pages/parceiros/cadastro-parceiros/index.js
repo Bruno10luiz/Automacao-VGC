@@ -29,8 +29,8 @@ class Parceiros {
         cy.get(el.nome).should('have.value', dados.nomeEsperado)
         cy.get(el.razaoSocial).should('have.value', dados.razaoSocialEsperado)
         cy.get(el.cep).should('have.value', dados.cepEsperado)
-        cy.get(el.cidade).type(dados.cidade)
-        cy.contains('li', dados.cidade).last().should('be.visible').click() // Seleciona a cidade correta na lista suspensa
+        cy.get(el.cidade).should('have.value', dados.cidade)
+        //cy.contains('li', dados.cidade).last().should('be.visible').click() // Seleciona a cidade correta na lista suspensa
         
         // Validações de endereço automático
         cy.get(el.bairro).should('have.value', dados.bairroEsperado)
