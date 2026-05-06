@@ -1,6 +1,6 @@
-import Login from "../../pages/login"
-import Dashboard from "../../pages/dashboard"
-import Parceiros from "../../pages/parceiros" // Importa a página nova
+import Login from "../../../pages/login"
+import Dashboard from "../../../pages/dashboard"
+import Parceiros from "../../../pages/parceiros/cadastro-parceiros"
 
 const massaDeDados = [
     {
@@ -224,10 +224,11 @@ describe('Parceiros', () => {
         it(dados.cenario, () => {
             Parceiros.acessarPagina()
             Parceiros.iniciarNovoCadastro()
-            Parceiros.escolherJornada(dados.jornada) // Passa a variável
-            Parceiros.preencherFormulario(dados) // Passa todas as variáveis
+            Parceiros.escolherJornada(dados.jornada) 
+            Parceiros.preencherFormulario(dados) 
             Parceiros.salvarParceiro()
-            Parceiros.validarCadastroCriado(dados.nomeEsperado) // Passa a variável
+            Parceiros.validarCadastroCriado(dados.nomeEsperado) 
+            Parceiros.deletarParceiroCriado(dados.razaoSocialEsperado)
         })
         
     })

@@ -41,6 +41,8 @@ describe('Parceiros',  () => {
         Parceiros.preencherFormulario(dados)
         Parceiros.salvarParceiro()        
         Parceiros.validarCadastroCriado(dados.nomeEsperado)
+        //Parceiros.deletarParceiroCriado(dados.razaoSocialEsperado)
+        
         
     })
 })

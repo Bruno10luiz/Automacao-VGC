@@ -1,4 +1,4 @@
-import Login from "../pages/login"
+import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
 import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
 
@@ -12,8 +12,8 @@ describe('Parceiros',  () => {
         cnpj: '46.060.391/0001-30',
         nomeEsperado: 'LAMPIAO 10',
         razaoSocialEsperado: 'RIO FORMOSO 8 ENERGIA RENOVAVEL S.A.',
-        cepEsperado: '24736590',
-        cidade: 'SAO GONCALO',
+        cepEsperado: '22210904',
+        cidade: 'RIO DE JANEIRO',
         bairroEsperado: 'FLAMENGO',
         enderecoEsperado: 'DO FLAMENGO',
         numeroEsperado: '00078',
@@ -41,5 +41,6 @@ describe('Parceiros',  () => {
                 Parceiros.preencherFormulario(dados)
                 Parceiros.salvarParceiro()        
                 Parceiros.validarCadastroCriado(dados.nomeEsperado)
+                Parceiros.deletarParceiroCriado(dados.razaoSocialEsperado)
     })
 })

@@ -3,6 +3,7 @@ import Dashboard from "../../../pages/dashboard"
 import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
 import Contatos from "../../../pages/parceiros/contatos"
 
+const PARCEIRO_TESTE = '50.071.289 DAVID DE SOUZA SILVA'
 
 const dadosContato = {
     nomeContato: 'TESTE NAME',
@@ -23,6 +24,7 @@ describe('Criar contato', () => {
 
     it('Acessar Contato e criar novo contato', () => {
         Parceiros.acessarPagina()
+        Contatos.acessarParceiro(PARCEIRO_TESTE)
         Contatos.criarContato(dadosContato)
 
     })

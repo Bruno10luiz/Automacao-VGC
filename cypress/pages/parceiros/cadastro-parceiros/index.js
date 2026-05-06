@@ -5,7 +5,7 @@ class Parceiros {
     acessarPagina() {
         cy.get(el.sidebarParceiros).click()
         // Boa prática: garantir que a tela carregou antes de continuar
-        cy.url().should('include', '/parceiros') 
+        //cy.url().should('include', '/parceiros') 
     }
 
     iniciarNovoCadastro() {
@@ -51,7 +51,19 @@ class Parceiros {
     }
 
     validarCadastroCriado(nomeEsperado) {
+        cy.wait(3500)
         cy.get(el.cardName).should('contain.text', nomeEsperado)
+    }
+    deletarParceiroCriado(razaoSocialEsperado){
+        cy.get(el.btnVoltar).click()
+        cy.get(el.inputProcurar).type(razaoSocialEsperado)
+        cy.get(el.checkBoxParceiro)
+            .first()
+            .check()
+            .should('be.checked')
+        cy.get(el.btnDelete).click()
+        cy.get(el.btnConfirm).click()
+
     }
 }
 

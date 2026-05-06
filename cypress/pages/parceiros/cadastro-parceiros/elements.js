@@ -23,5 +23,12 @@ export const elements = {
     
     // Ações Finais
     btnSubmit: 'button[type="submit"]',
-    cardName: '.card-info-parceiro__name'
+    cardName: '.card-info-parceiro__name',
+
+    //deletar parceiro
+    btnVoltar: 'button[title="Voltar"]',
+    inputProcurar: 'input[data-action="filter"]',
+    checkBoxParceiro: '.row-checkbox',
+    btnDelete: '[data-action="delete-selected"]',
+    btnConfirm: '.swal2-confirm', 
 }

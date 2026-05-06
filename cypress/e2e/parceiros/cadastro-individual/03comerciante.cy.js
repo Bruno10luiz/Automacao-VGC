@@ -1,4 +1,4 @@
-import Login from "../pages/login"
+import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
 import Parceiros from "../../../pages/parceiros/cadastro-parceiros"
 
@@ -9,18 +9,18 @@ describe('Parceiros',  () => {
         cenario: 'Cadastro: Comerciante', // Nome que vai aparecer no Cypress
         jornada: 'Comerciante',
         tipoPessoa: 'JURÍDICA',
-        cnpj: '17.522.276/0001-32',
-        nomeEsperado: 'BRASEIRO SPETTUS',
-        razaoSocialEsperado: 'JOSE FERNANDES OLIVEIRA NETO 02210930367',
-        cepEsperado: '60325690',
-        cidade: 'FORTALEZA',
-        bairroEsperado: 'MONTE CASTELO',
-        enderecoEsperado: 'HENRIQUE AUTRAN',
-        numeroEsperado: '621',
+        cnpj: '27.171.820/0001-00',
+        nomeEsperado: 'PIZZARIA BAIANA',
+        razaoSocialEsperado: 'PIZZARIA BAIANA LTDA',
+        cepEsperado: '45530000',
+        cidade: 'ITACARE',
+        bairroEsperado: 'CENTRO',
+        enderecoEsperado: 'LODONIO ALMEIDA',
+        numeroEsperado: '160',
         nomeContato: 'TESTE NAME',
         telefone: '1234567890',
-        celularEsperado: '8589125844',
-        emailEsperado: ''
+        celularEsperado: '7388066859',
+        emailEsperado: 'pizzariabaiana.fin@gmail.com'
     }
 
     before(() => {
@@ -41,5 +41,7 @@ describe('Parceiros',  () => {
                 Parceiros.preencherFormulario(dados)
                 Parceiros.salvarParceiro()        
                 Parceiros.validarCadastroCriado(dados.nomeEsperado)
+                Parceiros.deletarParceiroCriado(dados.razaoSocialEsperado)
     })
+    
 })

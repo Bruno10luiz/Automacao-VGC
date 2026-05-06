@@ -39,8 +39,9 @@ describe('Parceiros',  () => {
         Parceiros.iniciarNovoCadastro()
         Parceiros.escolherJornada(dados.jornada)
         Parceiros.preencherFormulario(dados)
-        //Parceiros.salvarParceiro()        
-       // Parceiros.validarCadastroCriado(dados.nomeEsperado)
+        Parceiros.salvarParceiro()        
+        Parceiros.validarCadastroCriado(dados.nomeEsperado)
+        Parceiros.deletarParceiroCriado(dados.razaoSocialEsperado)
         
     })
 })

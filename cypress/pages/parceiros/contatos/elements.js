@@ -1,5 +1,5 @@
 export const elements = {
-    nome: 'a:contains("AGROMAXIMUS COMERCIO E REPR.AGRICOLA LTD")',
+    //nome: 'a:contains("360 TREASURY SYSTEMS AG")',
     btnNovoContato: 'button:contains("Novo Contato")',
     nomeContato: '#nomeContato',
     email: '#email',

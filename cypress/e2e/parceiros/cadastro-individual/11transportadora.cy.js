@@ -1,4 +1,4 @@
-import Login from "../pages/login"
+import Login from "../../../pages/login"
 import Dashboard from "../../../pages/dashboard"
 import Parceiros from "../../../pages/parceiros/cadastro-parceiros"
 
@@ -41,5 +41,6 @@ describe('Parceiros',  () => {
                Parceiros.preencherFormulario(dados)
                Parceiros.salvarParceiro()        
                Parceiros.validarCadastroCriado(dados.nomeEsperado)
+               Parceiros.deletarParceiroCriado(dados.razaoSocialEsperado)
     })
 })

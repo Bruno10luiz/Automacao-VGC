@@ -3,7 +3,7 @@ import Dashboard from "../../../pages/dashboard"
 import Parceiros from "../../../pages/parceiros/cadastro-parceiros" 
 import Fiscal from "../../../pages/parceiros/cadastro-contabil" // Ajuste o caminho da pasta!
 
-const PARCEIRO_TESTE = 'AGROMAXIMUS COMERCIO E REPR.AGRICOLA LTD'
+const PARCEIRO_TESTE = '41.661.048 FRANCIELE CAMPOS DE BRITO OLIVEIRA'
 
 describe('Fiscal e Conta Contábil', () => {
     

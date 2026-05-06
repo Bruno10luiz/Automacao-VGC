@@ -2,8 +2,12 @@ import { elements as el } from "./elements"
 
 class Contatos {
 
+    acessarParceiro(nomeDoParceiro) {
+        cy.contains('a', nomeDoParceiro).scrollIntoView().should('be.visible').click()
+    }
+    
     criarContato(dados) {
-        cy.get(el.nome).click()
+        
         
         // Correção do Timeout: Espera o botão de novo contato ficar visível na tela antes de clicar
         cy.get(el.btnNovoContato, { timeout: 10000 }).should('be.visible').click()
